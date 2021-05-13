@@ -27,6 +27,10 @@ router.post('/message',function(req,res){
     response.success(req,res,'mensaje creado');
 });
 
+//servidor de estaticos
+app.use('/app',express.static('public'));
+
+
 //ejecutar express
 app.listen(3000);
 console.log('La app esta escuchando en http://localhost:3000');

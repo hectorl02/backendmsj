@@ -1,0 +1,20 @@
+.content{
+    background-color: beige;
+}
+.title{ 
+    width:30%;
+    text-align:center;
+    border:1px solid #000; 
+    border-radius: 5%;
+    padding:8px;
+    margin: auto;
+    background-color: cornflowerblue;
+}
+.parrafo{
+    text-align:center;
+    border:1px solid #000; 
+    padding:10px;
+    width:70%;
+    margin: auto;
+    background-color: aquamarine;    
+}
