@@ -1,4 +1,6 @@
 const express=require('express'); //paquet para servidores
+const bodyParser=require('body-parser');//para trabajar con el body de la peticion
+const response= require('.///network/respond');//traer modulo local
 const router=express.Router()// separa peticiones
 
 
@@ -10,12 +12,19 @@ var app=express();//inicializa express
 //     res.send('hola');
 // });
 
+app.use(express.json());
+app.use(express.urlencoded({
+    extended:false
+}));
 app.use(router);
+
 router.get('/message',function(req,res){
-    res.send('lista de mensajes');
+    response.success(req,res,'lista de mensajes');// va al modulo response,accede a success y lleva req y res
 });
 router.post('/message',function(req,res){
-    res.send('mensaje creado');
+    console.log(req.body);
+    console.log(req.query);
+    response.success(req,res,'mensaje creado');
 });
 
 //ejecutar express
