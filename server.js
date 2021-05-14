@@ -1,8 +1,8 @@
 const express=require('express'); //paquet para servidores
 const bodyParser=require('body-parser');//para trabajar con el body de la peticion
-const response= require('.///network/respond');//traer modulo local
-const router=express.Router()// separa peticiones
 
+//const router= require('./components/message/network');// se trae router
+const router =require('./network/routes')
 
 var app=express();//inicializa express
 
@@ -16,20 +16,16 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended:false
 }));
-app.use(router);
 
-router.get('/message',function(req,res){
-    response.success(req,res,'lista de mensajes');// va al modulo response,accede a success y lleva req y res
-});
-router.post('/message',function(req,res){
-    console.log(req.body);
-    console.log(req.query);
-    response.success(req,res,'mensaje creado');
-});
+// usa los midleware de express
+//app.use(router);
+
+// pasarle el servidor de express q creamos al router
+// parq q cree todas la rutas necesarias
+router(app);
 
 //servidor de estaticos
 app.use('/app',express.static('public'));
-
 
 //ejecutar express
 app.listen(3000);
