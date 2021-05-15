@@ -6,8 +6,17 @@ const router=express.Router();
 
 
 router.get('/',function(req,res){
-    response.success(req,res,'lista de mensajes');// va al modulo response,accede a success y lleva req y res
+    // va al modulo response,accede a success y lleva req y res
+    //response.success(req,res,'lista de mensajes');
+    controller.getMessage()
+    .then((messageList)=>{
+        response.success(req,res,messageList,200);
+    })
+    .catch(e=>{
+        response.error(req,res,'Error Inesperado',500),e;
+    })
 });
+
 router.post('/',function(req,res){
 
     controller.addMessage(req.body.user, req.body.message)

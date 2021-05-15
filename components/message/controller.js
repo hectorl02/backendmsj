@@ -1,4 +1,6 @@
-//crae funciones necesarias
+//crea funciones necesarias//
+
+const store=require('./store');
 
 
 function addMessage(user,message){
@@ -15,15 +17,19 @@ function addMessage(user,message){
             message:message,
             date:new Date,
         };    
-        console.log(fullMessage);
+        store.add(fullMessage);
         resolve(fullMessage);
-    });
+    });   
+}
 
-    
-
+function getMessage(){
+    return new Promise((resolve,reject)=>{
+        resolve(store.list());
+    })   // devolver promesa
 }
 
 //exportar funcion con unico modulo
 module.exports={
     addMessage,
+    getMessage,
 }
