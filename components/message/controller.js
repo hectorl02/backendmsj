@@ -28,8 +28,21 @@ function getMessages(){
     })   // devolver promesa
 }
 
+function updateMessage(id,message){
+    return new Promise(async (resolve,reject)=>{
+        if(!id || !message){
+            reject('Invalida data');
+            return false;
+        }
+        const result =await store.updateText(id,message);
+        resolve(result)
+    })
+}
+
 //exportar funcion con unico modulo
 module.exports={
     addMessage,
     getMessages,
+    updateMessage,
+    
 }
