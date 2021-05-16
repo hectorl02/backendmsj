@@ -14,8 +14,12 @@ function addMessage(message){
 }
 
 // funcion para listar msj
-async function getMessages(){ // func asincrona
-    const messages = await Model.find();
+async function getMessages(filterUser){ // func asincrona
+    let filter={};
+    if (filterUser!==null){
+        filter={user:filterUser};
+    }
+    const messages = await Model.find(filter);
     return messages;
 }
 
