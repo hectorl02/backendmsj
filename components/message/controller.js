@@ -22,7 +22,7 @@ function addMessage(user,message){
     });   
 }
 
-function getMessage(){
+function getMessages(){
     return new Promise((resolve,reject)=>{
         resolve(store.list());
     })   // devolver promesa
@@ -31,5 +31,5 @@ function getMessage(){
 //exportar funcion con unico modulo
 module.exports={
     addMessage,
-    getMessage,
+    getMessages,
 }

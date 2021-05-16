@@ -8,7 +8,7 @@ const router=express.Router();
 router.get('/',function(req,res){
     // va al modulo response,accede a success y lleva req y res
     //response.success(req,res,'lista de mensajes');
-    controller.getMessage()
+    controller.getMessages()
     .then((messageList)=>{
         response.success(req,res,messageList,200);
     })
