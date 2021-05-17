@@ -1,8 +1,12 @@
 const express=require('express'); //paquet para servidores
 const bodyParser=require('body-parser');//para trabajar con el body de la peticion
 
+const db = require('./bd');
 //const router= require('./components/message/network');// se trae router
 const router =require('./network/routes')
+
+
+db('mongodb+srv://hector:hola1234@cluster0.ra7in.mongodb.net/messages_db?retryWrites=true&w=majority');
 
 var app=express();//inicializa express
 
