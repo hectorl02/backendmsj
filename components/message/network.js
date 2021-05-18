@@ -1,9 +1,14 @@
 // recibe peticion http, procesar la informacion y enviar al controlador
 const express=require('express');
+const multer = require('multer');// se encarga de la gestion de archivos
 const response= require('../../network/response');//traer modulo local
 const controller = require('./controller');
 const router=express.Router();
 
+const upload = multer({
+    dest: 'public/files/',//guarda los archivos a upload
+
+})
 
 router.get('/',function(req,res){
     // va al modulo response,accede a success y lleva req y res
@@ -18,9 +23,9 @@ router.get('/',function(req,res){
     })
 });
 
-router.post('/',function(req,res){
-
-    controller.addMessage(req.body.chat, req.body.user, req.body.message)
+router.post('/',upload.single('file') ,function(req,res){
+    
+    controller.addMessage(req.body.chat, req.body.user, req.body.message,req.file)
         .then((fullMessage)=>{
             response.success(req,res,fullMessage, 200);
         })
