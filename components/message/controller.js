@@ -3,16 +3,17 @@
 const store=require('./store');
 
 
-function addMessage(user,message){
+function addMessage(chat, user,message){
     //se trabaja con promesas para verificacion
     return new Promise((resolve, reject)=>{
-        if(!user || !message){// si no hay usuario o mensaje,haga:
+        if(!chat || !user || !message){// si no hay usuario o mensaje,haga:
             console.error('[messageController] No hay Usuario o mensaje');//mostrar donde esta el error
             reject('Los datois son incorrectos');
             return false;//para que no siga ejecutando
         }
         
         const fullMessage={
+            chat:chat,
             user:user,
             message:message,
             date:new Date,
