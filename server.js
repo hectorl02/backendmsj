@@ -1,4 +1,6 @@
 const express=require('express'); //paquet para servidores
+const app=express();//inicializa express
+const server = require('http').Server(app);//inicia servidor de socket
 const bodyParser=require('body-parser');//para trabajar con el body de la peticion
 
 const db = require('./bd');
@@ -8,7 +10,6 @@ const router =require('./network/routes')
 
 db('mongodb+srv://hector:hola1234@cluster0.ra7in.mongodb.net/messages_db?retryWrites=true&w=majority');
 
-var app=express();//inicializa express
 
 // //me va responder desde cualquier ruta
 // //una func http tiene req y res
@@ -32,5 +33,6 @@ router(app);
 app.use('/app',express.static('public'));
 
 //ejecutar express
-app.listen(3000);
-console.log('La app esta escuchando en http://localhost:3000');
+app.listen(3000, function(){// se hace callback para asegurarse q esta escuchando
+    console.log('La app esta escuchando en http://localhost:3000');
+});
