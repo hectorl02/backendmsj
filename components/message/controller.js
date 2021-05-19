@@ -1,5 +1,6 @@
 //crea funciones necesarias//
 
+const socket = require('../../socket').socket;
 const store=require('./store');
 
 
@@ -7,7 +8,7 @@ function addMessage(chat, user,message, file){
     //se trabaja con promesas para verificacion
     return new Promise((resolve, reject)=>{
         if(!chat || !user || !message){// si no hay usuario o mensaje,haga:
-            console.error('[messageController] No hay Usuario o mensaje');//mostrar donde esta el error
+            console.error('[messageController] No hay Usuario o mensaje o chat');//mostrar donde esta el error
             reject('Los datois son incorrectos');
             return false;//para que no siga ejecutando
         }
@@ -25,6 +26,9 @@ function addMessage(chat, user,message, file){
             file:fileUrl,
         };    
         store.add(fullMessage);
+
+        socket.io.emit('message',fullMessage);
+
         resolve(fullMessage);
     });   
 }

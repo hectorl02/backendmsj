@@ -2,6 +2,7 @@ const express=require('express'); //paquet para servidores
 const app=express();//inicializa express
 const server = require('http').Server(app);//inicia servidor de socket
 const bodyParser=require('body-parser');//para trabajar con el body de la peticion
+const socket = require('./socket');// traemos socket
 
 const db = require('./bd');
 //const router= require('./components/message/network');// se trae router
@@ -27,6 +28,8 @@ app.use(express.urlencoded({
 
 // pasarle el servidor de express q creamos al router
 // parq q cree todas la rutas necesarias
+socket.connect(server);//servidor de socket connectado
+
 router(app);
 
 //servidor de estaticos
